@@ -1,41 +1,42 @@
-name: Update IP List
+名称：更新IP列表
 
-on:
-  #schedule:
-    #- cron: '0 */3 * * *' # 每3小时运行一次
-  workflow_dispatch: # 允许手动触发
-  #push: # 允许提交触发
+在
+请将网页文本输入到内容区域，我将为您进行翻译。
+日程安排
+    - cron: '0 */6 * * *' # 每6小时运行一次
+  workflow_dispatch：# 允许手动触发
+  push: # 允许提交触发
 
-jobs:
+工作：
 
-  update-ip-list:
-    runs-on: ubuntu-latest
+  更新IP列表:
+    运行于：ubuntu-latest
     
-    steps:
-    - uses: actions/checkout@v3
+    步骤：
+    - 使用：actions/checkout@v3
       
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
+    - 名称: 设置Python
+      使用：actions/setup-python@v4
+      与：
+        python-version：'3.9'
         
-    - name: Install dependencies
-      run: |
+    - 名称: 安装依赖项
+      运行： |
         python -m pip install --upgrade pip
         pip install requests
         pip install beautifulsoup4
         
-    - name: Run script
-      run: python ${{ github.workspace }}/collect_ips.py
+    - 名称: 运行脚本
+      运行：python ${{ github.workspace }}/collect_ips.py
         
-    - name: Commit and push changes
-      run: |
-        git config --global user.email "tianshideyou@proton.me"
-        git config --global user.name "tianshipapa"
+    - 名称：提交并推送更改
+      运行： |
+        git 配置全局用户邮箱 "天师殿友@proton.me"
+        git 配置全局用户名称 “天 shipapa”
         if [ -n "$(git status --porcelain)" ]; then
-          git add ip.txt
-          git commit -m "Automatic update"
-          git push
-        else
-          echo "No changes detected, skipping commit."
-        fi
+          git 添加 ip.txt
+          git commit -m "自动更新"
+          git 推送
+        否则
+          echo “未检测到更改，跳过提交。”
+        输入：fi
